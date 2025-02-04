@@ -2,6 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const { default: helmet } = require("helmet");
 const compression = require("compression");
+
+require("dotenv").config();
 const app = express();
 
 // init middleware
@@ -18,8 +20,6 @@ app.use(compression());
 
 // init db
 require("./database/init.mongodb");
-const { checkOverload } = require("./helpers/checkConnect");
-checkOverload();
 // init router
 app.get("/", (req, res, next) => {
   const strCompression = "hello compression";

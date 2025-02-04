@@ -1,10 +1,11 @@
 "use strict";
 
 const mongoose = require("mongoose");
-const { countConnect } = require("../helpers/checkConnect");
-
-const connectString =
-  "mongodb://admin:password@localhost:27017/mydatabase?authSource=admin";
+const { countConnect, checkOverload } = require("../helpers/checkConnect");
+const {
+  db: { username, password, host, port, dbname },
+} = require("../configs/config.mongodb");
+const connectString = `mongodb://${username}:${password}@${host}:${port}/${dbname}?authSource=admin`;
 
 mongoose
   .connect(connectString)
@@ -17,7 +18,7 @@ class Database {
   }
   // connect to database
   connect(type = "mongodb") {
-    if (process.env.APP_ENV == "dev") {
+    if (process.env.NODE_ENV == "dev") {
       console.log("app env: dev");
 
       mongoose.set("debug", true);
@@ -35,7 +36,10 @@ class Database {
       })
       .then(() => {
         console.log("✅ MongoDB Connected!");
-        countConnect();
+        if (process.env.NODE_ENV == "dev") {
+          countConnect();
+          checkOverload();
+        }
       })
       .catch((error) => console.error("❌ MongoDB Connection Error:", error));
   }
