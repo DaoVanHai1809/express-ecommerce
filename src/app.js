@@ -17,7 +17,9 @@ app.use(helmet());
 app.use(compression());
 
 // init db
-
+require("./database/init.mongodb");
+const { checkOverload } = require("./helpers/checkConnect");
+checkOverload();
 // init router
 app.get("/", (req, res, next) => {
   const strCompression = "hello compression";
