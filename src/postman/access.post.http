@@ -1,0 +1,5 @@
+### signup
+POST http://localhost:3055/v1/api/shop/signup
+
+### signup2
+GET http://localhost:3055/v1/api/ok

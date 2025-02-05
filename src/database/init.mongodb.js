@@ -36,10 +36,10 @@ class Database {
       })
       .then(() => {
         console.log("✅ MongoDB Connected!");
-        if (process.env.NODE_ENV == "dev") {
-          countConnect();
-          checkOverload();
-        }
+        // if (process.env.NODE_ENV == "dev") {
+        //   countConnect();
+        //   checkOverload();
+        // }
       })
       .catch((error) => console.error("❌ MongoDB Connection Error:", error));
   }

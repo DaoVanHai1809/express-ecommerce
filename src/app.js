@@ -21,14 +21,7 @@ app.use(compression());
 // init db
 require("./database/init.mongodb");
 // init router
-app.get("/", (req, res, next) => {
-  const strCompression = "hello compression";
-  return res.status(200).json({
-    success: true,
-    message: "Hello World",
-    metadata: strCompression.repeat(1000),
-  });
-});
+app.use("/", require("./routers"));
 //handling errors
 
 module.exports = app;
