@@ -1,5 +1,13 @@
 ### signup
 POST http://localhost:3055/v1/api/shop/signup
+Content-Type: application/json
+
+{
+  "name": "johnd9o4e32",
+  "email": "johndoe4332@example.com",
+  "password": "password123"
+}
+
 
 ### signup2
 GET http://localhost:3055/v1/api/ok

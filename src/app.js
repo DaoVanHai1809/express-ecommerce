@@ -17,6 +17,12 @@ app.use(helmet());
 
 // - add compression middleware: giúp nén HTTP response bằng Gzip hoặc Brotli, giúp giảm băng thông, dung lượng dữ liệu gửi về client và tăng tốc độ tải trang.
 app.use(compression());
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 // init db
 require("./database/init.mongodb");
